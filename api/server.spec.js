@@ -10,7 +10,7 @@ const user = {
 
 afterEach(async () => {
   await db("users").truncate();
-}); // Runs a function after each one of the tests in this file completes. If the function returns a promise, Jest waits for that promise to resolve before continuing
+});
 
 describe("server", () => {
   describe("it can run tests", () => {
@@ -44,7 +44,6 @@ describe("server", () => {
       return supertest(server)
         .get("/api/users")
         .then((response) => {
-          // console.log("this is response/bdy", response.body);
           expect(Array.isArray(response.body)).toBe(true);
         });
     });
@@ -63,7 +62,6 @@ describe("server", () => {
         .post("/api/users")
         .send(user)
         .then((response) => {
-          // console.log("this is response/bdy", response.body[0]);
           expect(response.body[0]).toStrictEqual({
             id: 1,
             username: "lol123",
